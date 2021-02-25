@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="gregm"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-02-24 04:27:28 PM"/>
+        <attribute name="created" value="Z3JlZ207TEFQVE9QOzIwMjEtMDItMjM7MTE6MDA6MzQgUE07MjI1OQ=="/>
+        <attribute name="edited" value="Z3JlZ207TEFQVE9QOzIwMjEtMDItMjQ7MDQ6Mjc6MjggUE07NTsyMzg2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="// File name:   ATM &#13;&#10;// Due Date:    2/26/2021 &#13;&#10;// Author:      Greg Moes"/>
+            <declare name="checkingStartBalance, totalBalance, savingsStartBalance, checkingNewBalance, savingsNewBalance, depositAmount" type="Integer" array="False" size=""/>
+            <declare name="customerName, userName, password, testName, testPassword, actionFlag" type="String" array="False" size=""/>
+            <declare name="exit" type="Boolean" array="False" size=""/>
+            <assign variable="exit" expression="false"/>
+            <assign variable="savingsStartBalance" expression="2500"/>
+            <assign variable="checkingStartBalance" expression="35"/>
+            <assign variable="testName" expression="&quot;rbrown&quot;"/>
+            <assign variable="testPassword" expression="&quot;blue123&quot;"/>
+            <assign variable="customerName" expression="&quot;Robert Brown&quot;"/>
+            <assign variable="checkingNewBalance" expression="checkingStartBalance"/>
+            <assign variable="savingsNewBalance" expression="savingsStartBalance"/>
+            <while expression="exit == false">
+                <output expression="&quot;Welcome to Your Bank ATM!\nPlease login or exit: &quot;" newline="True"/>
+                <input variable="actionFlag"/>
+                <if expression="actionFlag == &quot;L&quot;">
+                    <then>
+                        <while expression="exit == false">
+                            <output expression="&quot;Please enter your Username: &quot;" newline="True"/>
+                            <input variable="userName"/>
+                            <if expression="userName == testName">
+                                <then>
+                                    <while expression="exit == false">
+                                        <output expression="&quot;Please enter your password; &quot;" newline="True"/>
+                                        <input variable="password"/>
+                                        <if expression="password == testPassword">
+                                            <then>
+                                                <while expression="exit == false">
+                                                    <output expression="&quot;Welcome to Your Bank &quot;" newline="True"/>
+                                                    <output expression="customerName" newline="True"/>
+                                                    <output expression="&quot;Please choose checkings 'C', savings 'S', or exit 'E': &quot;" newline="True"/>
+                                                    <input variable="actionFlag"/>
+                                                    <if expression="actionFlag == &quot;C&quot; || actionFlag == &quot;S&quot;">
+                                                        <then>
+                                                            <if expression="actionFlag == &quot;C&quot;">
+                                                                <then>
+                                                                    <output expression="&quot;You are making a deposit to your checking account.\Please enter the desired dep sit amount: &quot;" newline="True"/>
+                                                                    <input variable="depositAmount"/>
+                                                                    <assign variable="checkingNewBalance" expression="checkingNewBalance + depositAmount"/>
+                                                                    <output expression="&quot;You deposited $&quot; &amp; depositAmount &amp; &quot; into your checking account.\nYour new balance is: $&quot; &amp; checkingNewBalance" newline="True"/>
+                                                                </then>
+                                                                <else>
+                                                                    <output expression="&quot;You are making a deposit to your savings account.\Please enter the desired deposit amount: &quot;" newline="True"/>
+                                                                    <input variable="depositAmount"/>
+                                                                    <assign variable="savingsNewBalance" expression="savingsNewBalance + depositAmount"/>
+                                                                    <output expression="&quot;You deposited $&quot;" newline="True"/>
+                                                                    <output expression="depositAmount" newline="True"/>
+                                                                    <output expression="&quot; into your savings account.\nYour new balance is: $&quot;" newline="True"/>
+                                                                    <output expression="savingsNewBalance" newline="True"/>
+                                                                </else>
+                                                            </if>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="actionFlag == &quot;E&quot;">
+                                                                <then>
+                                                                    <output expression="&quot;You choose to exit!&quot;" newline="True"/>
+                                                                    <assign variable="exit" expression="true"/>
+                                                                </then>
+                                                                <else>
+                                                                    <output expression="&quot;Invalid input.&quot;" newline="True"/>
+                                                                </else>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </while>
+                                            </then>
+                                            <else>
+                                                <output expression="&quot;That was incorrect please try again: &quot;" newline="True"/>
+                                            </else>
+                                        </if>
+                                    </while>
+                                </then>
+                                <else>
+                                    <output expression="&quot;Please try again that was incorrect: &quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </while>
+                    </then>
+                    <else>
+                        <if expression="actionFlag == &quot;E&quot;">
+                            <then>
+                                <output expression="&quot;Thank you for your business!&quot;" newline="True"/>
+                                <assign variable="exit" expression="true"/>
+                            </then>
+                            <else>
+                                <output expression="&quot;Invalid Input.&quot;" newline="True"/>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </while>
+            <assign variable="totalBalance" expression="checkingNewBalance + savingsNewBalance"/>
+            <output expression="&quot;Starting Checking Balance: $&quot; &amp; checkingStartBalance &amp; &quot;\nStarting Savings Balance: $&quot; &amp; savingsStartBalance &amp; &quot;\nStarting Total: $&quot; &amp; checkingStartBalance + savingsStartBalance &amp; &quot;\n\nNew Checking Balance: $&quot; &amp; checkingNewBalance &amp; &quot;\nNew Savings Balance: $&quot; &amp; savingsNewBalance &amp; &quot;\nNew Total: $&quot; &amp; totalBalance" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
